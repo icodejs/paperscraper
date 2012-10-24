@@ -1,0 +1,128 @@
+
+<% include partials/masthead %>
+
+
+  <section>
+    <div class="docHeading hero-unit">
+      <h1>Docuvid <span class="label label-important"><a href="/beta">Beta</a></span></h1>
+      <p>Document social video and share with friends.</p>
+    </div>
+  </section>
+
+  <section class="urlContainer clearfix">
+    <input type="text" id="url" value="http://vimeo.com/6691519" placeholder="URL: http://youtu.be/Xp6aFno24x4?t=1m28s or ID: Xp6aFno24x4">
+    <button id="load" class="btn btn-primary" disabled="disabled">
+      Loading...
+    </button>
+  </section>
+
+  <section class="videoContainer" style="display: none;">
+    <div class="videoWrapper">
+      <div class="playerWrapper">
+        <div id="video">Loading...</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="videoNotes">
+    <div class="formNotes">
+
+      <div class="alert" style="display: none;">
+        <button type="button" class="close" data-hide="alert">×</button>
+        <span></span>
+      </div>
+
+      <div class="newNoteContainer" style="display: none;">
+        <!-- load a blank note template and use this to add new notes. -->
+      </div>
+
+      <div class="row-fluid">
+        <div class="savedNotesContainer span8" style="display: none;">
+          <input type="text" id="documentTitle" placeholder="Title">
+          <div class="savedNotes">
+          </div>
+        </div>
+
+        <div class="buttonContainer span4" style="display:none;">
+
+          <div class="control-group">
+            <select class="category">
+              <option>[Select Category]</option>
+              <option>Business</option>
+              <option>Entertainment</option>
+              <option>News</option>
+              <option>Photo &amp; Design</option>
+              <option>Sport</option>
+              <option>Style &amp; Fashion</option>
+              <option>Tech &amp; Science</option>
+              <option>Travel</option>
+              <option>Video</option>
+            </select>
+          </div>
+
+          <div class="control-group tagContainer">
+            <input type="text" class="tags" placeholder="Tags">
+          </div>
+
+          <hr>
+
+          <div class="control-group">
+            <!-- <button class="sort btn btn-small"><i class="icon-arrow-down"></i> Sort</button> -->
+            <button class="save btn btn-primary">Save document</button>
+            <button class="new btn btn-success" style="display:none;"><i class="icon-comment icon-white"></i> New</button>
+            <button class="delete btn btn-danger" style="display:none;"><i class="icon-trash icon-white"></i> Delete</button>
+            <label class="checkbox">
+              <input class="autoSave" type="checkbox" checked="checked"> Auto save?
+            </label>
+            <br>
+            <button class="share btn" style="display:none;"><i class="icon-share"></i> Share</button>
+            <button class="export btn" style="display:none;"><i class="icon-share-alt"></i> Export HTML</button>
+          </div>
+
+        </div>
+
+      </div> <!-- end row-fluid -->
+
+    </div> <!-- end formNotes -->
+  </section>
+
+
+  <% include partials/documents %>
+
+
+  <section class="socialContainer" style="display:none;">
+    <hr>
+    <div class="addthis_toolbox addthis_default_style addthis_32x32_style">
+      <a class="addthis_button_twitter" style="cursor:pointer"></a>
+      <a class="addthis_button_facebook" style="cursor:pointer"></a>
+      <a class="addthis_button_delicious" style="cursor:pointer"></a>
+      <a class="addthis_button_tumblr" style="cursor:pointer"></a>
+      <a class="addthis_button_reddit" style="cursor:pointer"></a>
+      <a class="addthis_button_stumbleupon" style="cursor:pointer"></a>
+      <a class="addthis_button_google_plusone_badge" style="cursor:pointer"></a>
+      <a class="addthis_button_hackernews" style="cursor:pointer"></a>
+      <a class="addthis_button_yammer" style="cursor:pointer"></a>
+      <a class="addthis_button_instapaper" style="cursor:pointer"></a>
+      <a class="addthis_button_favorites" style="cursor:pointer"></a>
+      <a class="addthis_button_print" style="cursor:pointer"></a>
+      <a class="addthis_button_compact" style="cursor:pointer"></a>
+      <a class="addthis_counter addthis_bubble_style"></a>
+    </div>
+    <script type="text/javascript" src="http://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5069d22c58bbf0d3"></script>
+  </section>
+
+  <div class="modalDialog modal hide fade">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+      <h3>Delete Document</h3>
+    </div>
+    <div class="modal-body">
+      <p></p>
+    </div>
+    <div class="modal-footer">
+      <button class="btn" data-dismiss="modal" aria-hidden="true">No</button>
+      <button class="btn btn-danger modalDelete"><i class="icon-trash icon-white"></i> <span>Yes</span></button>
+    </div>
+  </div>
+
+<% include partials/footer %>

@@ -1,0 +1,21 @@
+
+<% for (var i = 0; i < tmp.items.length; i += 1) { %>
+<% var note = tmp.items[i]; %>
+  <div id="<%= note.id %>" class="savedNote">
+    <p class="savedNoteText">
+      <a href="#">
+        <%= note.note ? note.note : '' %>
+      </a>
+    </p>
+
+    <% if (!tmp.readOnly) { %>
+      <span class="noteButtons">
+        <i class="icon-edit"></i> <a class="edit" href="#">Edit</a>
+        &nbsp;|&nbsp;
+        <i class="icon-trash"></i> <a class="delete" href="#">Delete</a>
+      </span>
+      &nbsp;|&nbsp;
+    <% } %>
+    <span class="noteInpoint" data-inPoint="<%= note.inPoint %>"><a class="goto" href="#"><i class="icon-time"></i> <span><%= note.inPointPretty %></span></a></span>
+  </div>
+<% } %>

@@ -1,0 +1,24 @@
+      <hr>
+      <footer>
+        <p>&copy; Docuvid 2012</p>
+      </footer>
+
+    </div> <!-- /container-fluid -->
+
+  </div>
+
+  <div id="loaderr" class="ajaxLoader alert alert-info" style="display: none;">
+    loading... &nbsp; <img src="/img/ajax-loader5.gif" alt="">
+  </div>
+
+  <% if (loadJs) { %>
+    <script data-main="/js/index" src="/js/libs/require/require.js"></script>
+  <% } %>
+
+
+  <% if (isLive) { %>
+    <script type="text/javascript" src="/js/analytics.js"></script>
+  <% } %>
+
+</body>
+</html>

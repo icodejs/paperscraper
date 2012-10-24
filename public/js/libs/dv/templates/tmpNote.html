@@ -1,0 +1,26 @@
+
+<% for (var i = 0; i < tmp.items.length; i += 1) { %>
+<% var doc = tmp.items[i]; %>
+  <fieldset id="<%= doc.id %>">
+    <input type="hidden" name="noteId" class="noteId" value="<%= doc.noteId ? doc.noteId : doc.id %>">
+    <button class="remove btn btn-mini" href="#">remove</button>
+
+    <div class="input-append inPointWrap">
+      <input type="number" id="inPoint_<%= i %>" min="0" step="1" max="<%= doc.maxOut ? doc.maxOut : '' %>" name="inPoint_<%= i %>" class="inPoint input-mini" placeholder="In point" value="<%= doc.inPoint ? doc.inPoint : '' %>" required>&nbsp;
+      <span class="add-on">seconds</span>
+    </div>
+    <input class="adjust" name="adjust" type="range" min="0" max="<%= doc.maxOut ? doc.maxOut : '' %>" value="<%= doc.inPoint ? doc.inPoint : 0 %>" step="0.01">
+    <br>
+    <textarea id="note_<%= i %>" name="note_<%= i %>" class="note" cols="30" rows="2" required><%= doc.note ? doc.note : '' %></textarea><br>
+
+    <% if (doc.isNew) { %>
+      <div class="newNoteButtons" style="text-align: right;margin: 0;">
+        <a style="display:none;" class="keyboardShortcuts" href="#"><small>Keyboard shortcuts</small></a>&nbsp;
+        <button class="togglePlay btn btn-success btn-small" title="Play / Pause (Ctrl + Shift + U)" rel="tooltip"><i class="icon-play icon-white"></i><i class="icon-pause icon-white"></i></button>
+        <button class="jumpTo btn btn-success btn-small" title="Go to in point (Ctrl + Shift + I)" rel="tooltip"><i class="icon-bookmark icon-white"></i></button>&nbsp;
+        <button class="add btn btn-small" title="Add note (Return / Enter)" rel="tooltip"><i class="icon-plus"></i></button>
+        <button class="reset btn btn-small" title="Reset note (Ctrl + Shift + O)" rel="tooltip"><i class="icon-remove"></i></button>
+      </div>
+    <% } %>
+  </fieldset>
+<% } %>

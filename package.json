@@ -1,0 +1,34 @@
+{
+  "name": "paperscraper",
+  "subdomain": "paperscraper",
+  "version": "0.0.1-1",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "author": "Jay Esco <icodejs@gmail.com>",
+  "description": "Scrape and save desktop wallpapers",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/icodejs/paperscraper"
+  },
+  "keywords": [
+    "wallpapers",
+    "scrape"
+  ],
+  "dependencies": {
+    "underscored": "0.1.x",
+    "express": "3.0.x",
+    "mime": "1.x",
+    "resourceful": "0.3.x",
+    "request": "~2.11.1",
+    "JSONSelect": "~0.4.0",
+    "everyauth": "git://github.com/icodejs/everyauth.git#express3",
+    "ejs": "~0.8.3",
+    "nodemailer": "~0.3.28",
+    "redis": "~0.8.1",
+    "connect-redis": "~1.4.4"
+  },
+  "engines": {
+    "node": ">=0.8"
+  }
+}

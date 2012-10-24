@@ -1,0 +1,5 @@
+node_modules
+.DS_Store
+
+# seeing as we are now a private repo
+lib/config.js

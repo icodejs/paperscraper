@@ -1,0 +1,22 @@
+<!-- in future load this from the server -->
+
+<% var columns = 12, span = 3, perRow = Math.floor(columns / span); %>
+
+<div class="docList row-fluid">
+    <ul class="thumbnails span<%= columns %>">
+      <% for (var i = 0; i < tmp.items.length; i += 1) { %>
+      <% var doc = tmp.items[i]; %>
+        <li id="<%= doc.docId %>" class="tile span<%= span %><%= (i % perRow === 0) ? ' first' : '' %>">
+          <div class="thumbnail">
+          <a class="overlay" href="#" data-id="<%= doc.docId %>" data-videoid="<%= doc.videoSummary.id %>">
+            <img src="<%= doc.videoSummary.thumbUrl %>" alt="<%= doc.title %>">
+            <p style="overflow: hidden; white-space: nowrap;"><%= doc.title %></p>
+          </a> <!-- add some kind of overlay image with a play triangle and position it over the above image -->
+          </div>
+        </li>
+        <% if (false) { %>
+          <hr class="clear">
+        <% } %>
+      <% } %>
+    </ul>
+</div>

@@ -1,0 +1,14 @@
+
+<% var columns = 12, span = 3, perRow = Math.floor(columns / span); %>
+<div class="docList row-fluid">
+    <div class="span<%= columns %>">
+        <% for (var i = 0; i < tmp.items.length; i += 1) { %>
+        <% var vid = tmp.items[i]; %>
+          <div id="<%= vid.videoId %>" class="span<%= span %><%= (i % perRow === 0) ? ' first' : '' %>">
+            <img src="<%= vid.thumbnails[2].url %>" alt="<%= vid.title %>" class="img-polaroid">
+            <a href="#" data-videoid="<%= vid.videoId %>"></a> <!-- add some kind of overlay image with a play triangle and position it over the above image -->
+            <p style="overflow: hidden; white-space: nowrap;"><a href="#" data-videoid="<%= vid.videoId %>"><%= vid.title %></a></p>
+          </div>
+        <% } %>
+    </div>
+</div>
