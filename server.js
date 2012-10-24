@@ -1,5 +1,6 @@
 
 var
+url             = require('url'),
 express         = require('express'),
 app             = express(),
 redis           = require('redis'),
@@ -11,13 +12,14 @@ routes          = require('./routes'),
 webPage         = require('./lib/webPage'),
 conf            = require('./lib/config'),
 mail            = require('./lib/mail'),
+scraper         = require('./lib/scraper');
 
-sessionStore    = new RedisStore({
-  host : conf.redis.host,
-  port : conf.redis.port,
-  pass : conf.redis.pass,
-  db   : conf.redis.db
-});
+// sessionStore    = new RedisStore({
+//   host : conf.redis.host,
+//   port : conf.redis.port,
+//   pass : conf.redis.pass,
+//   db   : conf.redis.db
+// });
 
 
 // -- Everyauth --
@@ -41,30 +43,30 @@ app.configure(function () {
 
   app.use(express.bodyParser());
   app.use(express.methodOverride());
-  app.use(express.cookieParser(conf.cookie.secret));
-  app.use(express.session({
-    store  : sessionStore,
-    cookie : {
-      maxAge   : 60000 * 60 * 24 * 7,
-      httpOnly : false
-    }
-  }));
+  // app.use(express.cookieParser(conf.cookie.secret));
+  // app.use(express.session({
+  //   store  : sessionStore,
+  //   cookie : {
+  //     maxAge   : 60000 * 60 * 24 * 7,
+  //     httpOnly : false
+  //   }
+  // }));
   //app.use(express.favicon());
   //app.use(everyauth.middleware());
   app.use(app.router);
   app.use(express.static(__dirname + '/public'));
-  app.use(function (err, req, res, next) {
-    var error = err.toString();
+  // app.use(function (err, req, res, next) {
+  //   var error = err.toString();
 
-    mail.send({
-      subject : 'Express middleware error',
-      text    : error
-    }, function (err, message) {
-      if (!err) console.log('email sent! ' + message);
-    });
+  //   mail.send({
+  //     subject : 'Express middleware error',
+  //     text    : error
+  //   }, function (err, message) {
+  //     if (!err) console.log('email sent! ' + message);
+  //   });
 
-    res.render('error', { title: 'oops...', error: error });
-  });
+  //   res.render('error', { title: 'oops...', error: error });
+  // });
 });
 
 app.configure('development', function () {
@@ -96,14 +98,40 @@ app.get('/user/create', user.create);
 app.get('/login', routes.login);
 
 
-// app.get('/scrape/webPage/', function(req, res){
-//   scrapeWebPage(req, res);
-// });
+app.get('/scrape/webpage', function(req, res){
+  scrapeWebPage(req, res);
+});
+
+
+function scrapeWebPage(req, res) {
+  var parsedUrl = url.parse(req.url, true);
+
+  scraper.scrapePage({
+    url : parsedUrl.query.url,
+    callback: function(err, obj) {
+      if (err) {
+        return res.end(500, err);
+      }
+      res.json(obj);
+    }
+  });
+}
+
 
 // webPages
-app.get('/load/webPages/', function(req, res){
+app.get('/load/webpages', function(req, res){
   loadWebPages(req, res);
 });
+
+
+function loadWebPages(req, res) {
+  webPage.all(function (err, results) {
+    if (err)
+      return res.end(500, err);
+    res.json(JSON.stringify(results));
+  });
+}
+
 
 // app.get('/save/webPage/', function(req, res){
 //   saveWebPage(req, res);
@@ -122,13 +150,6 @@ app.get('/load/webPages/', function(req, res){
 //   saveWallpaper(req, res);
 // });
 
-function loadWebPages(req, res) {
-  webPage.all(function (err, results) {
-    if (err)
-      return res.json(500, JSON.stringify(err));
-    res.json(JSON.stringify(results));
-  });
-}
 
 // search terms
 // app.get('/save/batch/searchterms/', function(req, res){

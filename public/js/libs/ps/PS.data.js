@@ -7,10 +7,11 @@ MB.data = (function ($) {
   'use strict';
 
   function getJSON(is_url, input, cb) {
-    var url = '';
+    var url = '', isJsonp = true;
 
-    if (MB.options.domain.length && MB.options.scrape_path.length && is_url) {
-      url  = MB.options.domain + MB.options.scrape_path + '?url=' + input;
+    if (MB.options.domain.length && is_url) {
+      url  = '/scrape/webpage/' + '?url=' + input;
+      isJsonp = false;
     } else {
       url  = 'http://ajax.googleapis.com/ajax/services/search/images?v=1.0&q=';
       url += (input.length ? MB.utils.parseSearchTerm(input) : MB.utils.getRandomSearchTerm(MB.options.search_terms));
@@ -25,7 +26,7 @@ MB.data = (function ($) {
 
     $.ajax({
       url: url,
-      dataType: 'jsonp',
+      dataType: isJsonp ? 'jsonp' : 'json',
       error: function (jqXHR, textStatus, errorThrown) {
         return cb({
           func_name : 'ajax getJson',
@@ -46,7 +47,7 @@ MB.data = (function ($) {
           }
           // replace this logic with a custom function that can be passed in for each api
 
-          if (MB.options.domain.length && is_url) {
+          if (is_url) {
             if (!MB.data.cache.items.contains(input, 'id')) {
               MB.data.cache.add({id: input, images: data});
             }
@@ -73,7 +74,7 @@ MB.data = (function ($) {
 
   function getWallpaperSites(cb) {
     $.ajax({
-      url:  '/load/webPages/',
+      url:  '/load/webpages/',
       dataType: 'json',
       error: function (jqXHR, textStatus, errorThrown) {
         return cb({

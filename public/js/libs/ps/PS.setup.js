@@ -6,7 +6,6 @@ MB.options = (function () {
 
   return {
     domain        : '/',
-    scrape_path   : '/scrape/webPage',
     api_url       : '/',
     covert        : false,
     loading_image : 'img/loader.gif',
