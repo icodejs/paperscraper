@@ -54,7 +54,7 @@ app.configure(function () {
   //app.use(express.favicon());
   //app.use(everyauth.middleware());
   app.use(app.router);
-  app.use(express.static(__dirname + '/public'));
+  app.use(express.static(__dirname + '/../client'));
   // app.use(function (err, req, res, next) {
   //   var error = err.toString();
 

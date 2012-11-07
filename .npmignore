@@ -1,8 +1,8 @@
 README.md
 node_modules
 .DS_Store
-notes
-test
-tests
-public/test
-public/tests
+server/notes
+server/test
+server/tests
+client/test
+client/tests

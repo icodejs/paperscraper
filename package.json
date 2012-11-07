@@ -1,9 +1,9 @@
 {
   "name": "paperscraper",
   "subdomain": "paperscraper",
-  "version": "0.0.1-1",
+  "version": "0.0.1-3",
   "scripts": {
-    "start": "node server.js"
+    "start": "node server/server.js"
   },
   "author": "Jay Esco <icodejs@gmail.com>",
   "description": "Scrape and save desktop wallpapers",
