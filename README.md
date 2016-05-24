@@ -45,4 +45,4 @@ Spacebar is always used to load new images, but the other shortcuts keys are opt
 
 ## Demo Screenshot
 
-<img src="https://raw.github.com/icodejs/paperscraper/master/public/img/screenshot.png"/>
+<img src="https://raw.githubusercontent.com/icodejs/paperscraper/master/client/img/screenshot.png"/>
